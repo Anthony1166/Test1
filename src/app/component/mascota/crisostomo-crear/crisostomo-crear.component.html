@@ -1,0 +1,68 @@
+<mat-card>
+  <mat-card-content>
+    <form>
+      <mat-form-field appearance="fill" style="width: 25%">
+        <mat-label>Dirección</mat-label>
+        <input
+          matInput
+          [(ngModel)]="mascota.Direccion"
+          name="direccion"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="width: 25%">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [(ngModel)]="mascota.FechaNacimiento"
+          name="fechaNacimiento"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="width: 25%">
+        <mat-label>Tamaño (cm)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="mascota.Tamanio"
+          name="tamanio"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="width: 25%">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="mascota.Status" name="status" required>
+          <mat-option *ngFor="let status of status" [value]="status">
+            {{
+              status === "A"
+                ? "Activo"
+                : status === "I"
+                ? "Inactivo"
+                : "Pendiente de Pago"
+            }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div style="display: flex; justify-content: flex-end; width: 100%">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="registrarMascota()"
+          style="margin-right: 10px"
+        >
+          Registrar
+        </button>
+        <button mat-raised-button color="warn" routerLink="/mascota/listado">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
